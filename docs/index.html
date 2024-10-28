@@ -19,9 +19,9 @@
 			.container {
 				display: flex;
 				height: 70vh;
-				align-items: center; /* Align items to the start */
+				flex-direction: column; /* Align items to the start */
 				justify-content:  space-around; /* Add space between items */
-				gap: 10px; /* Add gap between text and graph */
+				gap: 14px; /* Add gap between text and graph */
 				
 			}
 	
@@ -29,13 +29,13 @@
 				flex:100; /* Allow text box to take available space */
 				padding: 10px; /* Add some padding */
 				/*background-color: #f9f9f9; /* Light background for contrast */
-				border: 1px solid #ccc; /* Optional border */
+				/*border: 1px solid #ccc; /* Optional border */
 				border-radius: 5px; /* Optional rounded corners */
-				font-size: 14px
+				font-size: 25px
 			}
 	
 			iframe {
-				flex: 10000; /* Allow iframe to take more space */
+				flex: 1000; /* Allow iframe to take more space */
 			}
 
 		</style>
@@ -59,11 +59,9 @@
 						<section>
 							<h2 style = "height: 20vh;">Instrucciones de uso</h2> 
 							<ul style = "font-size: 30px">
-								<li>
-									Presione la tecla <strong>ESC</strong> para ver un mini mapa con todas las diapositivas del reporte.
-								</li>
+
 								<li> En la parte inferior derecha se encuentran las flechas de navegación.
-									Puede clicarlas con su ratón, o presionar las tecla correspondientes en su teclado.
+									Puede clicarlas con su ratón, o presionar las teclas correspondientes en su teclado.
 								</li>
 								<li>
 									En algunas diapositivas (como esta) verá flechas verticales que le permitiran ver más información.
@@ -72,30 +70,72 @@
 						</section>
 
 							<section>
-								<h4>Todos los gráficos son  interactivos, con su raton puede interactuar sobre ellos para ver información adicional, o encender y apagar categorias según sea el caso.</h4>
-								<iframe src="images/ejemplo.html"  width="100%" height="400" frameborder="0"></iframe>
-								<p style="font-size:30px">Presione la legenda azul Joly, para apagar dicha categoría en el mapa.
-									Presionela nuevamente para encenderla.
-								</p>
+								<li style = "font-size: 30px;height: 20vh;">Todos los gráficos son  interactivos. En el siguiente ejemplo ubique el 
+									ratón sobre el mapa para ver más información. Intente mover el mapa :) </li>
+									  
+								<iframe src="images/ejemplo.html"  width="700" height="300" frameborder="0"></iframe>
+								
+								<li style = "font-size: 30px;">Puede presionar las categorias en la leyenda para encenderlas y apagarlas.
+								</li>
+								<li style = "font-size: 30px;">En la parte superior derecha del gráfico presione <strong>reset view</strong> para obtener el gráfico original.
+								</li>
+							</section>
+
+							<section>
+								<li style = "font-size: 30px;">Si lo desea puede presionar la tecla <strong>ESC</strong> para ver todas 
+								las diapositivas y navegar a la que desee.</li>
 							</section>
 						
 
 				</section>
 
 				<section data-transition="convex-in concave-out"><!---------------slide--------------->
-				<h3>agrupación por ciudades</h3>
+				<h1>Análisis de tendencias</h1>
+
+				</section>
+
+				<section data-transition="convex-in concave-out"><!---------------slide--------------->
+					<section>
+					<h3 style = "height: 20vh;">Suma asegurada año 2023</h3>
 					<div class = "container">
 						<div class="text-box">
-							<h3>Key Points</h3>
+							<iframe src="images/SumaAsegurada2023.html"  width="100%" height="400" frameborder="0"></iframe>
 							<ul>
-								<li>Point 1: Explanation of key point 1.xfsdfsdfssdfsf</li>
-								<li>Point 2: Explanation of key point 2.</li>
-								<li>Point 3: Explanation of key point 3.</li>
+								<li>Tierra seguros tiene presencia en 27 paises</li>
+								<li>Se concentra principalmente en Australia</li>
+								<li>Algunos valores asegurados negativos fueron corregidos en la data histórica</li>
 							</ul>
-						</div>
-						<iframe src="images/dark.html"  width="1000" height="500" frameborder="0"></iframe>
+						</div>		
+					</div>
+					</section>
+				<section>
+					<h3 style = "height: 20vh;">Suma asegurada promedio</h3>
+					<div class = "container">
+						<div class="text-box">
+							<iframe src="images/SumaAseguradaPromedio.html"  width="100%" height="400" frameborder="0"></iframe>
+							<ul>
+								<li>históricamente China, Indonesia y Reino unido poseen el valor asegurado promedio más alto</li>
+							</ul>
+						</div>		
 					</div>
 				</section>
+				</section>
+
+				<section data-transition="convex-in concave-out"><!---------------slide--------------->
+					<h3>Análisis de tendencias</h3>
+						<div class = "container">
+							<div class="text-box">
+			
+								<ul>
+									<li>Point 1: Explanation of key point 1.xfsdfsdfssdfsf</li>
+									<li>Point 2: Explanation of key point 2.</li>
+									<li>Point 3: Explanation of key point 3.</li>
+								</ul>
+							</div>
+							<iframe src="images/dark.html"  width="1000" height="500" frameborder="0"></iframe>
+
+						</div>
+					</section>
 
 				<section>
 					<section>otra slide</section>
