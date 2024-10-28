@@ -8,21 +8,67 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/white-contrast.css">
+		<link rel="stylesheet" href="dist/theme/simple.css">
 
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<!-- style two columns format -->
+		<style>
+			.container {
+				display: flex;
+				height: 70vh;
+				align-items: center; /* Align items to the start */
+				justify-content:  space-around; /* Add space between items */
+				gap: 10px; /* Add gap between text and graph */
+				
+			}
+	
+			.text-box {
+				flex:100; /* Allow text box to take available space */
+				padding: 10px; /* Add some padding */
+				/*background-color: #f9f9f9; /* Light background for contrast */
+				border: 1px solid #ccc; /* Optional border */
+				border-radius: 5px; /* Optional rounded corners */
+				font-size: 14px
+			}
+	
+			iframe {
+				flex: 10000; /* Allow iframe to take more space */
+			}
+
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-
+				<section><!---------------slide--------------->
+					<h1>
+						Tierra Seguros reporte de suscripción
+					</h1>
+					<h3>
+						Actuarios Certificados
+					</h3>
+					<p>
+						<small>Abraham Guerrero J, Duvan Manrique, Miguel Rosales, Braian Moreno,Cristian Ávila</small>
+					</p>
 				</section>
-				<section>
-					<h2>agrupación por ciudades</h2>
-					<iframe src="images/image.html" width="100%" height="500" frameborder="0"></iframe>
+
+				<section><!---------------slide--------------->
+				<h3>agrupación por ciudades</h3>
+					<div class = "container">
+						<div class="text-box">
+							<h3>Key Points</h3>
+							<ul>
+								<li>Point 1: Explanation of key point 1.xfsdfsdfssdfsf</li>
+								<li>Point 2: Explanation of key point 2.</li>
+								<li>Point 3: Explanation of key point 3.</li>
+							</ul>
+						</div>
+						<iframe src="images/dark.html"  width="1000" height="500" frameborder="0"></iframe>
+					</div>
+				
 				</section>
 				<section>Slide 2</section>
 				<section>Slide 3</section>
@@ -39,6 +85,9 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				progress: true,
+				history:true,
+
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]

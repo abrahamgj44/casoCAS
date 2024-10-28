@@ -55,7 +55,8 @@ graph = px.scatter(
     color="CiudadClustered",
     size="Suma Asegurada",
     marginal_y="box",
-    template="ggplot2",
+    template="plotly_white",
 )
+graph
 
-graph.write_html(r"C:\Users\abrah\OneDrive\Desktop\image.html")
+graph.write_html(r"C:\Users\abrah\OneDrive\Desktop\dark.html")
