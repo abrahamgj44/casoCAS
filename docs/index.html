@@ -157,34 +157,91 @@
 								</ul>
 							</div>		
 						</div>
-					</section>
-					<section>
 
+					</section>
+
+
+
+
+					<section>
+						<h3>Tasa por mil de inundación vs precipitación e incremento de fuentes hídricas (agrupadas por ciudad)</h3>
+						<div class = "container">
+							<div class="text-box">
+								<iframe src="images/tasapormilvsIncrementoPromedio.html"  width="100%" height="350" frameborder="0"></iframe>
+								<ul style= "font-size: 15px;">
+									<li>
+										al agrupar por ciudad, observamos que aquellas que presentan una precipitación promedio 
+										de entre 150 y 200 mm anuales, además de incrementos de entre 2 y 3 m, poseen las tasas por mil más altas.
+										Contrastando contra bases de información pública, se sugiere reducir el apetito en aquellas ciudades
+										con estas condiciones.
+									</li>
+								</ul>
+							</div>		
+						</div>
 					</section>
 				</section>
 
 				<section data-transition="convex-in concave-out"><!---------------slide--------------->
-					<h3>Análisis de tendencias</h3>
+					<h1>Zoom-in Varios Niveles</h1>
+					</section>
+
+				<section data-transition="convex-in concave-out"><!---------------slide--------------->
+					<section>
+					<h3>Clusterización de Ciudades por Prima y Valor Asegurado</h3>
+					<div class = "container">
+						<div class="text-box">
+							<iframe src="images/clustersCiudad.html"  width="100%" height="450" frameborder="0"></iframe>
+							<ul style= "font-size: 15px;">
+								<li>
+									Una vez realizado el análisis de frecuencia y severidad, procedemos a clusterizar las ciudades
+									para encontrar similitudes entre ellas y plantear futuros grupos de tarificación. En el grafico realizamos este proceso por medio 
+									del algoritmo de k-medias. El tamaño del círculo representa el valor asegurado.
+								</li>
+							</ul>
+						</div>		
+					</div>
+					</section>
+					<section>
+						<h3>Clusterización de Ciudades por Severidad</h3>
 						<div class = "container">
 							<div class="text-box">
-			
-								<ul>
-									<li>Point 1: Explanation of key point 1.xfsdfsdfssdfsf</li>
-									<li>Point 2: Explanation of key point 2.</li>
-									<li>Point 3: Explanation of key point 3.</li>
+								<iframe src="images/clustersSeveridad.html"  width="100%" height="450" frameborder="0"></iframe>
+								<ul style= "font-size: 15px;">
+									<li>
+										Adelantandonos a un futuro ejercicio de tarificación por GLM, clusterizamos las ciudades por severidad. Esto además de aportarnos valiosa
+										información de suscripción, sienta los cimientos para el cálculo de relatividades con respecto al nivel en el cuál tengamos mayor número
+										de reclamaciones.
+									</li>
 								</ul>
-							</div>
-							<iframe src="images/dark.html"  width="1000" height="500" frameborder="0"></iframe>
-
+							</div>		
 						</div>
+						</section>
+
+				</section>
+
+				<section data-transition="convex-in concave-out"><!---------------slide--------------->
+					<h3 style="height: 20vh;">Siguientes pasos</h3>
+					<ul style="font-size: 30px">
+						<li>
+							Una vez discutidos con suscripción los puntos más importantes de este reporte,
+							procederemos a clusterizar todas nuestras variables con miras a construir un modelo de tarificación por GLM.
+						</li>
+						<li>
+							Nuestra base actualmente posee 188 siniestros. Si queremos que los valores observados no difieran en más de un 5% el 
+							90% de la veces requerimos de al menos 1082 siniestros (Credibilidad Clásica). Con 188, un hipotético modelo de tarificación solo tendría
+							41% de credibilidad, así que es necesario pensar desde ahora en cual va a ser nuestro complemento de credibilidad.
+						</li>
+					</ul>
 					</section>
 
 				<section>
-					<section>otra slide</section>
-					<section>otra slide2</section>
+					<section><<h1>¿Preguntas?</h1>/section>
+					<section>
+					<h1>Gracias </h1>
+				</section>
 				</section>
 
-				<section>Slide 3</section>
+				
 			</div>
 		</div>
 
