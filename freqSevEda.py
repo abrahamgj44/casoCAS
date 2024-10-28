@@ -128,6 +128,12 @@ class FreqSevEDA:
         bar_sev = plotly_bar(df, dimension, self.claimNb, visible=False)
         line_sev = plotly_scatter(df, dimension, "marginalSeve", visible=False)
 
+        # Pure Premium
+        bar_exp = plotly_bar(df, dimension, self.exposure, visible=False)
+        line_loss_cost = plotly_scatter(
+            df, dimension, "marginalLossCost", visible=False
+        )
+
         # graphing portfolio metrics
         portfolio_metric = self.portfolio_metrics()
         portFreqdf = df.select(dimension).with_columns(
@@ -136,14 +142,31 @@ class FreqSevEDA:
         portSevedf = df.select(dimension).with_columns(
             portSeve=pl.lit(portfolio_metric.item(0, "marginalSeve"))
         )
+        portLossdf = df.select(dimension).with_columns(
+            portLoss=pl.lit(portfolio_metric.item(0, "marginalLossCost"))
+        )
+
         portFreqGraph = plotly_scatter(portFreqdf, dimension, "portFreq", visible=True)
         portSeveGraph = plotly_scatter(portSevedf, dimension, "portSeve", visible=False)
+        portLossGraph = plotly_scatter(portLossdf, dimension, "portLoss", visible=False)
 
         # buttons to change between the graphs
         button1 = dict(
             method="update",
             args=[
-                {"visible": [True, True, True, False, False, False]},
+                {
+                    "visible": [
+                        True,
+                        True,
+                        True,
+                        False,
+                        False,
+                        False,
+                        False,
+                        False,
+                        False,
+                    ]
+                },
                 {
                     "yaxis2": dict(
                         title=dict(text="marginalFreq"),
@@ -160,7 +183,19 @@ class FreqSevEDA:
         button2 = dict(
             method="update",
             args=[
-                {"visible": [False, False, False, True, True, True]},
+                {
+                    "visible": [
+                        False,
+                        False,
+                        False,
+                        True,
+                        True,
+                        True,
+                        False,
+                        False,
+                        False,
+                    ]
+                },
                 {
                     "yaxis2": dict(
                         title=dict(text="marginalSeve"),
@@ -176,9 +211,50 @@ class FreqSevEDA:
             ],
             label="marginalSeve",
         )
+
+        button3 = dict(
+            method="update",
+            args=[
+                {
+                    "visible": [
+                        False,
+                        False,
+                        False,
+                        False,
+                        False,
+                        False,
+                        True,
+                        True,
+                        True,
+                    ]
+                },
+                {
+                    "yaxis2": dict(
+                        title=dict(text="marginalLossCost"),
+                        side="right",
+                        overlaying="y",
+                        tickmode="sync",
+                    ),
+                    "yaxis": dict(title=dict(text=self.exposure, side="left")),
+                    "title": dict(
+                        text="marginalLossCost vs Exposure", font=dict(size=30)
+                    ),
+                },
+            ],
+            label="marginalLossCost",
+        )
         # putting all the traces together
         for graph, axis in zip(
-            [portFreqGraph, bar_sev, line_sev, portSeveGraph], [True, False, True, True]
+            [
+                portFreqGraph,
+                bar_sev,
+                line_sev,
+                portSeveGraph,
+                bar_exp,
+                line_loss_cost,
+                portLossGraph,
+            ],
+            [True, False, True, True, False, True, True],
         ):
             fig_freq.add_trace(
                 graph,
@@ -189,7 +265,7 @@ class FreqSevEDA:
         fig_freq.update_layout(
             title=dict(text="marginalFreq vs Exposure", font=dict(size=30)),
             updatemenus=[
-                dict(type="buttons", buttons=[button1, button2], y=0.5, x=1.4)
+                dict(type="buttons", buttons=[button1, button2, button3], y=0.5, x=1.4)
             ],
             height=400,
             template="plotly_white",
