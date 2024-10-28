@@ -9,6 +9,11 @@ from IPython.display import display, clear_output
 # beautiful tables
 from great_tables import GT, md, html, style, loc
 
+# clustering
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 class FreqSevEDA:
 
@@ -239,3 +244,81 @@ class FreqSevEDA:
         # Initial display
         display(drop)
         display(out)
+
+    def cluster_dimension(self, dimension, n_clusters, style="frequency"):
+        grouped_by_dimension = self.frequency_and_severity_summary(dimension)
+
+        if style == "severity":
+            category = "marginalSeve"
+
+        elif style == "frequency":
+            category = "marginalFreq"
+
+        # onehot enconding
+        encoded_df = pl.concat(
+            [
+                grouped_by_dimension.select(category),
+                grouped_by_dimension.select(dimension).to_dummies(),
+            ],
+            how="horizontal",
+        )
+
+        # kmeans
+        kmeans = KMeans(n_clusters=n_clusters, init="k-means++", random_state=0)
+        kmeans.fit(encoded_df)
+
+        cluster_df = grouped_by_dimension.with_columns(cluster=kmeans.labels_).rename(
+            {"cluster": f"{dimension}Gr_{style}"}
+        )
+        return cluster_df
+
+    def add_clusters(self, dimension, n_clusters, style="frequency"):
+
+        clustered = self.cluster_dimension(
+            dimension, n_clusters=n_clusters, style=style
+        ).select(pl.col(dimension, f"{dimension}Gr_{style}"))
+
+        return self.data.join(clustered, on=dimension, how="left")
+
+    def show_clusters(
+        self,
+        dimension,
+        n_clusters,
+        size=(10, 5),
+        sizes=(20, 200),
+        style="frequency",
+        show_labels=True,
+    ):
+        grouped_by_dimension = self.cluster_dimension(
+            dimension, n_clusters, style=style
+        )
+
+        if style == "frequency":
+            x = "marginalFreq"
+            size_name = "Exposicion"
+        elif style == "severity":
+            x = "marginalSeve"
+            size_name = "Numero Siniestros"
+
+        plt.subplots(nrows=1, ncols=2, figsize=size)
+        plt.subplot(1, 2, 1)
+        pre_cluster = sns.scatterplot(
+            y=dimension,
+            x=x,
+            data=grouped_by_dimension,
+            sizes=sizes,
+        )
+
+        if not show_labels:
+            pre_cluster.get_yaxis().set_ticks([])
+
+        plt.subplot(1, 2, 2)
+        clustered = sns.scatterplot(
+            y=dimension,
+            x=x,
+            data=grouped_by_dimension,
+            hue=f"{dimension}Gr_{style}",
+            palette="Spectral",
+            sizes=sizes,
+        )
+        clustered.get_yaxis().set_ticks([])
